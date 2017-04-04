@@ -13,18 +13,17 @@
             </div>
         </div>
     </div>
-
     @forelse($posts as $post)
-        @can('updatePost', $post)
-            <h1>{{ $post->title }}</h1>
-            <p>{{ $post->description }}</p>
-            <strong><small>Author: {{ $post->user->name }}</small></strong>
-            <br>
-            <a href="{{ url("/post/$post->id/update") }}">Editar</a>
-            <hr>
+        @can('view_post', $post)
+                <h1>{{ $post->title }}</h1>
+                <p>{{ $post->description }}</p>
+                <strong><small>Author: {{ $post->user->name }}</small></strong>
+                <br>
+                <a href="{{ url("/post/$post->id/update") }}">Editar</a>
+                <hr>
         @endcan
-    @empty
-        <p>Nenhum post cadastrado</p>
+        @empty
+            <p>Nenhum post cadastrado</p>
     @endforelse
 </div>
 @endsection

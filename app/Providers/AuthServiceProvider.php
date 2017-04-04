@@ -24,14 +24,18 @@ class AuthServiceProvider extends ServiceProvider
 //        \App\Post::class => \App\Policies\PostPolicy::class,
     ];
 
-    protected function getPermission()
+    protected function getPermission($gate)
     {
         try
         {
             $permissions = Permission::with('roles')->get();
             foreach ($permissions as $permission)
             {
-                $gate->define($permission->name, function(User $user) use ($permission){
+                $gate->define($permission->name, function(User $user) use ($permission)
+                {
+                    /*echo '<pre>';
+                    print_r($permission->name);
+                    echo '</pre>';*/
                     return $user->hasPermission($permission);
                 });
             }
@@ -40,7 +44,6 @@ class AuthServiceProvider extends ServiceProvider
         {
             return [];
         }
-
     }
 
     /**
@@ -50,7 +53,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(GateContract $gate)
     {
-        $this->registerPolicies();
+        $this->registerPolicies($gate);
 
         //
 
@@ -58,7 +61,8 @@ class AuthServiceProvider extends ServiceProvider
             return $user->id == $post->user_id;
         });*/
 
-        $this->getPermission();
+
+        $this->getPermission($gate);
 
 
 

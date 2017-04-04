@@ -35,20 +35,38 @@ class User extends Authenticatable
 
     public function hasPermission(Permission $permission)
     {
+//        dd($permission->roles());
         return $this->hasAnyRoles($permission->roles);
     }
 
     public function hasAnyRoles($roles)
     {
+        $ar = (array) $roles;
+//        echo '<pre>';
+//        $cont = count($roles);
+//        print_r($cont);
+//        echo '</pre>';
+        /*print_r($ar);
+        print_r($roles);
+        echo '</pre>';*/
         if(is_array($roles) || is_object($roles))
         {
+            $ro = $roles[0];
             foreach($roles as $role)
             {
-                $this->hasAnyRoles($role->name);
+//                echo '<pre>';
+                var_dump($role->name);
+
+//                echo '</pre>';
+//                return $this->hasAnyRoles($role->name);
+//                return $this->roles->contains('name', $role['name']);
             }
         }
-
-        return $this->roles->contains('name', $roles);
+        else
+        {
+            /*var_dump($roles);
+            return $this->roles->contains('name', $roles);*/
+        }
     }
     
     /*public function posts()

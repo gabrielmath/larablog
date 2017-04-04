@@ -44,6 +44,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                        <li><a href="{{ url('/roles-permissions') }}"> Roles - Permissions</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

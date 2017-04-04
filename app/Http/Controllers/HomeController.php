@@ -34,12 +34,30 @@ class HomeController extends Controller
     {
         $post = Post::find($id);
 
-        $this->authorize('updatePost', $post);
+//        $this->authorize('updatePost', $post);
 
-        if(Gate::denies('updatePost',$post))
+        if(Gate::denies('edit_post',$post))
             abort(403, 'Unauthorized');
 
         return view('update', compact('post'));
+    }
+
+    public function rolesPermissions()
+    {
+        echo auth()->user()->name;
+
+        foreach (auth()->user()->roles as $role)
+        {
+            echo "<br>Role name: ". $role->name.'<br>';
+
+            echo "<ul>";
+            $permissions = $role->permissions;
+            foreach ($permissions as $permission)
+            {
+                echo '<li>'.$permission->name.'</li>';
+            }
+            echo "</ul> <br>";
+        }
     }
 
 
