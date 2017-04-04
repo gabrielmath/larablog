@@ -24,6 +24,25 @@ class AuthServiceProvider extends ServiceProvider
 //        \App\Post::class => \App\Policies\PostPolicy::class,
     ];
 
+    protected function getPermission()
+    {
+        try
+        {
+            $permissions = Permission::with('roles')->get();
+            foreach ($permissions as $permission)
+            {
+                $gate->define($permission->name, function(User $user) use ($permission){
+                    return $user->hasPermission($permission);
+                });
+            }
+        }
+        catch (\Exception $e)
+        {
+            return [];
+        }
+
+    }
+
     /**
      * Register any authentication / authorization services.
      *
@@ -39,13 +58,8 @@ class AuthServiceProvider extends ServiceProvider
             return $user->id == $post->user_id;
         });*/
 
-        $permissions = Permission::with('roles')->get();
-        foreach ($permissions as $permission)
-        {
-            $gate->define($permission->name, function(User $user) use ($permission){
-                return $user->hasPermission($permission);
-            });
-        }
+        $this->getPermission();
+
 
 
     }
