@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Permission;
+
 
 class User extends Authenticatable
 {
@@ -33,9 +35,8 @@ class User extends Authenticatable
         return $this->belongsToMany(\App\Role::class);
     }
 
-    public function hasPermission(Permission $permission)
+    public function hasPermission(\App\Permission $permission)
     {
-//        dd($permission->roles());
         return $this->hasAnyRoles($permission->roles);
     }
 
@@ -43,20 +44,39 @@ class User extends Authenticatable
     {
         if(is_array($roles) || is_object($roles))
         {
+            return !! $roles->intersect($this->roles)->count();
+        }
+
+        return $this->roles->contains('name', $roles);
+    }
+
+
+
+
+    // ===============  MINHA FUNÇÃO DE RETORNO DE VALIDAÇÃO ====================================//
+    // --------------- (deu mó trabalho essa porra) --------------------------------------------//
+    /*public function hasAnyRoles($roles)
+    {
+
+        if(is_array($roles) || is_object($roles))
+        {
+            $user_roles = auth()->user()->roles;
             foreach($roles as $role)
             {
-                $ver = $role->name. " - ".$this->roles->contains('name', $role->name);
+                foreach ($user_roles as $user_role)
+                {
+                    $r = (string) $role->name;
+                    $ur = (string) $user_role->name;
 
-                var_dump($ver);
-//                return $this->roles->contains('name', $role->name);
+                    if($r == $ur)
+                    {
+                        return $this->hasAnyRoles($user_role->name);
+                    }
+                }
             }
         }
-        else
-        {
-            /*var_dump($roles);*/
             return $this->roles->contains('name', $roles);
-        }
-    }
+    }*/
     
     /*public function posts()
     {

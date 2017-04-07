@@ -33,12 +33,15 @@ class AuthServiceProvider extends ServiceProvider
             {
                 $gate->define($permission->name, function(User $user) use ($permission)
                 {
-                    /*echo '<pre>';
-                    print_r($permission->name);
-                    echo '</pre>';*/
                     return $user->hasPermission($permission);
                 });
             }
+            
+            $gate->before(function(User $user, $ability)
+            {
+                if($user->hasAnyRoles('Adm'))
+                    return true;
+            });
         }
         catch (\Exception $e)
         {
