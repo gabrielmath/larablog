@@ -1,4 +1,8 @@
 const { mix } = require('laravel-mix');
+var bowerDir = 'resources/assets/bower_components';
+var cssDir = 'public/css';
+var fontDir = 'public/fonts';
+var jsDir = 'public/js';
 
 /*
  |--------------------------------------------------------------------------
@@ -11,5 +15,7 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js('resources/assets/js/app.js', jsDir)
+   .sass('resources/assets/sass/app.scss', cssDir)
+   .js(bowerDir + '/jquery/dist/jquery.min.js', jsDir)
+   .js(bowerDir + '/materialize/dist/js/materialize.min.js', jsDir);

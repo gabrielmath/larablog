@@ -1,0 +1,18 @@
+{
+  "name": "larablog",
+  "description": "",
+  "main": "",
+  "authors": [
+    "W01\\web <audicomunicacao@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/gabrielmath/larablog",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "resources/assets/bower_components",
+    "test",
+    "tests"
+  ]
+}

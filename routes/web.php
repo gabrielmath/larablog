@@ -17,7 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-Route::get('/post/{id}/update', 'HomeController@update');
+Route::group(['prefix' =>'painel'], function(){
+    Route::get('/', 'Painel\PainelController@index');
+});
 
-Route::get('/roles-permissions', 'HomeController@rolesPermissions');
+
+
+
+Route::get('/home', 'SiteController@index');
+Route::get('/post/{id}/update', 'SiteController@update');
+
+Route::get('/roles-permissions', 'SiteController@rolesPermissions');
