@@ -18,13 +18,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['prefix' =>'painel'], function(){
+
     Route::get('/', 'Painel\PainelController@index');
+
+    Route::get('post', 'Painel\PostController@index');
+
 });
 
 
 
 
-Route::get('/home', 'SiteController@index');
-Route::get('/post/{id}/update', 'SiteController@update');
+Route::get('/home', 'Portal\SiteController@index');
+Route::get('/post/{id}/update', 'Portal\SiteController@update');
 
-Route::get('/roles-permissions', 'SiteController@rolesPermissions');
+Route::get('/roles-permissions', 'Portal\SiteController@rolesPermissions');
