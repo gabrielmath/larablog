@@ -2,7 +2,34 @@
 
 @section('content')
     <div class="container">
-        @forelse($posts as $post)
+        <h2>Listagem De Posts</h2>
+        <table class="highlight striped bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Author</th>
+                </tr>
+            </thead>
+            <tbody>
+            @forelse($posts as $post)
+                @can('view_post', $post)
+                    <tr>
+                        <td><a href="{{ url("/post/$post->id/update") }}">{{ $post->id }}</a></td>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->description }}</td>
+                        <td>{{ $post->user->name }}</td>
+                    </tr>
+                @endcan
+            @empty
+                <tr>
+                    <td colspan="4" style="text-align: center;">Nenhum post cadastrado</td>
+                </tr>
+            @endforelse
+            </tbody>
+        </table>
+        {{--@forelse($posts as $post)
             @can('view_post', $post)
                 <h2>{{ $post->title }}</h2>
                 <p>{{ $post->description }}</p>
@@ -13,6 +40,6 @@
             @endcan
         @empty
             <p>Nenhum post cadastrado</p>
-        @endforelse
+        @endforelse--}}
     </div>
 @endsection

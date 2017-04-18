@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ url('css/app.css') }}">
     <!--<link rel="stylesheet" href="css/main.css"> -->
 </head>
@@ -25,7 +27,7 @@
                 <li><a href="sass.html">Users</a></li>
                 <li><a href="badges.html">Posts</a></li>
                 <li><a href="collapsible.html">Roles</a></li>
-                <li><a href="collapsible.html">Permissions</a></li>
+                <li><a href="{{ url('/painel/permissions/') }}">Permissions</a></li>
             </ul>
         </div>
     </nav>
