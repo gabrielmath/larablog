@@ -13,14 +13,14 @@
             </tr>
             </thead>
             <tbody>
-            @forelse($permissions as $permission)
-                @can('view_post', $permission)
+            @forelse($roles as $role)
+                @can('view_post', $role)
                     <tr>
-                        <td><a href="{{ url("/permissions/$permission->id/update") }}">{{ $permission->id }}</a></td>
+                        <td><a href="{{ url("/roles/$role->id/update") }}">{{ $role->id }}</a></td>
                         <td>{{ $permission->name }}</td>
                         <td>{{ $permission->label }}</td>
                         <td>
-                            <a href="{{ url("/permission/$permission->id/roles") }}" class="waves-effect waves-light btn red">
+                            <a href="{{ url("/role/$role->id/permissions") }}" class="waves-effect waves-light btn red">
                                 <i class="material-icons">lock_open</i>
                             </a>
                         </td>

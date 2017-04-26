@@ -8,19 +8,19 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Label</th>
+                <th>Email</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            @forelse($permissions as $permission)
-                @can('view_post', $permission)
+            @forelse($users as $user)
+                @can('view_post', $user)
                     <tr>
-                        <td><a href="{{ url("/permissions/$permission->id/update") }}">{{ $permission->id }}</a></td>
-                        <td>{{ $permission->name }}</td>
-                        <td>{{ $permission->label }}</td>
+                        <td><a href="{{ url("/roles/$user->id/update") }}">{{ $user->id }}</a></td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
                         <td>
-                            <a href="{{ url("/permission/$permission->id/roles") }}" class="waves-effect waves-light btn red">
+                            <a href="{{ url("/role/$user->id/permissions") }}" class="waves-effect waves-light btn red">
                                 <i class="material-icons">lock_open</i>
                             </a>
                         </td>
