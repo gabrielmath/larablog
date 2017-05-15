@@ -16,11 +16,11 @@
             @forelse($users as $user)
                 @can('view_post', $user)
                     <tr>
-                        <td><a href="{{ url("/roles/$user->id/update") }}">{{ $user->id }}</a></td>
+                        <td><a href="{{ url("/user/$user->id/update") }}">{{ $user->id }}</a></td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>
-                            <a href="{{ url("/role/$user->id/permissions") }}" class="waves-effect waves-light btn red">
+                            <a href="{{ url("/user/$user->id/permissions") }}" class="waves-effect waves-light btn red">
                                 <i class="material-icons">lock_open</i>
                             </a>
                         </td>
