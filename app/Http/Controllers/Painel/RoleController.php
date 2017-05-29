@@ -23,12 +23,12 @@ class RoleController extends Controller
         return view('painel.roles.index', compact('roles'));
     }
 
-    public function roles($id)
+    public function permissions($id)
     {
         $role = $this->role->find($id);
 
         $permissions = $role->permissions()->get();
 
-        return view('painel.roles.index', compact('role','permissions'));
+        return view('painel.roles.permissions', compact('role','permissions'));
     }
 }

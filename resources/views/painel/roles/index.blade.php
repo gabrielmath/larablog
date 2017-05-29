@@ -14,18 +14,16 @@
             </thead>
             <tbody>
             @forelse($roles as $role)
-                @can('view_post', $role)
-                    <tr>
-                        <td><a href="{{ url("/roles/$role->id/update") }}">{{ $role->id }}</a></td>
-                        <td>{{ $permission->name }}</td>
-                        <td>{{ $permission->label }}</td>
-                        <td>
-                            <a href="{{ url("/role/$role->id/permissions") }}" class="waves-effect waves-light btn red">
-                                <i class="material-icons">lock_open</i>
-                            </a>
-                        </td>
-                    </tr>
-                @endcan
+                <tr>
+                    <td><a href="{{ url("/painel/roles/$role->id/update") }}">{{ $role->id }}</a></td>
+                    <td>{{ $role->name }}</td>
+                    <td>{{ $role->label }}</td>
+                    <td>
+                        <a href="{{ url("/painel/role/$role->id/permissions") }}" class="waves-effect waves-light btn red">
+                            <i class="material-icons">lock_open</i>
+                        </a>
+                    </td>
+                </tr>
             @empty
                 <tr>
                     <td colspan="4" style="text-align: center;">Nenhuma permissão cadastrada</td>

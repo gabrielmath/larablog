@@ -24,9 +24,9 @@
         <div class="nav-wrapper">
             <a href="#" class="brand-logo">Logo</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="sass.html">Users</a></li>
+                <li><a href="{{ url('/painel/users/') }}">Users</a></li>
                 <li><a href="badges.html">Posts</a></li>
-                <li><a href="collapsible.html">Roles</a></li>
+                <li><a href="{{ url('/painel/roles/') }}">Roles</a></li>
                 <li><a href="{{ url('/painel/permissions/') }}">Permissions</a></li>
             </ul>
         </div>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2>Listagem De Permissiões</h2>
+        <h2>ROLES: {{ $permission->name }}</h2>
         <table class="highlight striped bordered">
             <thead>
             <tr>
@@ -13,13 +13,13 @@
             </tr>
             </thead>
             <tbody>
-            @forelse($permissions as $permission)
+            @forelse($roles as $role)
                 <tr>
-                    <td><a href="{{ url("/painel/permissions/$permission->id/update") }}">{{ $permission->id }}</a></td>
-                    <td>{{ $permission->name }}</td>
-                    <td>{{ $permission->label }}</td>
+                    <td><a href="{{ url("/painel/permissions/$role->id/update") }}">{{ $role->id }}</a></td>
+                    <td>{{ $role->name }}</td>
+                    <td>{{ $role->label }}</td>
                     <td>
-                        <a href="{{ url("/painel/permission/$permission->id/roles") }}" class="waves-effect waves-light btn red">
+                        <a href="{{ url("/painel/permission/$role->id/roles") }}" class="waves-effect waves-light btn red">
                             <i class="material-icons">lock_open</i>
                         </a>
                     </td>

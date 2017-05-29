@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2>Listagem De Permissiões</h2>
+        <h2>PERMISSIONS: {{ $role->name }}</h2>
         <table class="highlight striped bordered">
             <thead>
             <tr>
